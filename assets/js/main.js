@@ -2,17 +2,17 @@ const Projects = {
     'dalston':{
         image_count:19,
         tab_name:'Project 1',
-        description: 'A wrap around extension and loft conversion in East Didsbury'
+        description: 'Project description for project 1'
     },
-    'heritage_gardens':{
+    'heritage':{
         image_count:17,
         tab_name:'Project 2',
-        description: 'An extension on the back and a full refurbishment of a huge property in the center of Didsbury',
+        description: 'Project description for project 2',
     }
 }
 let SlideIndex = 1;
-
 document.addEventListener('DOMContentLoaded', configurePage())
+
 /**
  * Called on content loaded event
  * Sets up the page navigation event handling
@@ -71,7 +71,7 @@ function getElementCoordinates(element){
 function setHeadlineOpacityChange(){
     document.addEventListener('scroll', () => {
         var overlay = document.getElementById('overlay')
-        overlay.style.opacity = Math.max(0, Math.min(scrollY / 350, 0.9))
+        overlay.style.opacity = Math.max(0, Math.min(scrollY / 150, 0.9))
     })
 }
 
@@ -110,20 +110,39 @@ function showSlide(n){
  * @param {String} folder_name 
  */
 function buildSlideShow(folder_name){
-    const gallery = document.getElementById('gallery')
-    const prev_button = document.getElementById('prev')
-    const thumbnail_row = document.getElementById('thumbnail_row')
-    const root = 'assets\\images'
-    
-    const image_count = Projects[folder_name].image_count
-    for(i=1; i<=image_count; i++){
-        var image_src = `${root}\\${folder_name}\\${folder_name}_${i}.jpg`
-        var slide = buildSlide(image_src)
-        var thumbnail = buildThumbnail(image_src, i, image_count)
+    buildSlideShowImages(folder_name);
+    updateProjectDescription(folder_name)
+}
 
-        gallery.insertBefore(slide, prev_button)
-        thumbnail_row.appendChild(thumbnail)
+/**
+ * 
+ * @param {String} folder_name 
+ */
+function buildSlideShowImages(folder_name) {
+    const gallery = document.getElementById('gallery');
+    const prev_button = document.getElementById('prev');
+    const thumbnail_row = document.getElementById('thumbnail_row');
+    const root = 'assets\\images';
+
+    //TODO - refactor the below into a function
+    const image_count = Projects[folder_name].image_count;
+    for (i = 1; i <= image_count; i++) {
+        var image_src = `${root}\\${folder_name}\\${folder_name}_${i}.jpg`;
+        var slide = buildSlide(image_src);
+        var thumbnail = buildThumbnail(image_src, i, image_count);
+
+        gallery.insertBefore(slide, prev_button);
+        thumbnail_row.appendChild(thumbnail);
     }
+}
+
+/**
+ * 
+ * @param {String} folder_name 
+ */
+function updateProjectDescription(folder_name){
+    const project_description = Projects[folder_name].description
+    document.getElementById('project_description').textContent = project_description
 }
 
 /**
@@ -168,22 +187,46 @@ function buildThumbnail(image_src, image_index, image_count){
  */
 function addTabs(){
     const tab_container = document.getElementById("tab_container")
-    Object.keys(Projects).forEach(key => {
-        var tab_name = Projects[key].tab_name
-        var tab = buildTab(tab_name, key)
+    Object.keys(Projects).forEach(folder_name => {
+        var tab_name = Projects[folder_name].tab_name
+        var tab = buildTab(tab_name, folder_name)
         tab_container.appendChild(tab)
-
-        var description = Projects[key].description
-        // var tab_content = buildTabContent(description)
     })
 }
 
-function buildTab(tab_name, project_name){
+/**
+ * 
+ * @param {String} tab_name 
+ * @param {String} folder_name 
+ * @returns {HTMLButtonElement}
+ * Creates the project tab button adds the change project event listener to it
+ * and returns the button
+ */
+function buildTab(tab_name, folder_name){
     var tab = document.createElement("button")
     tab.textContent = tab_name
     tab.className = "tablinks"
     tab.addEventListener("click", ()=>{
-        changeProject(project_name)
+        changeProject(folder_name)
     })
     return tab
+}
+
+/**
+ * 
+ * @param {String} folder_name - the name of folder to change to on the carousel
+ */
+function changeProject(folder_name){  
+    clearSlides()
+    clearThumbnails()
+    buildSlideShow(folder_name)
+    showSlide(1)
+}
+
+function clearSlides(){
+    Array.from(document.querySelectorAll('.slide')).map(ele => ele.remove())
+}
+
+function clearThumbnails(){
+    Array.from(document.querySelectorAll('.column')).map(ele => ele.remove()) //TODO - why is the class name column
 }

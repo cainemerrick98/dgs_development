@@ -30,7 +30,11 @@
                         <h1>DGS Development</h1>
                         <h2>Master Residential Builders</h2>
                         <p>With over 20 years experience building residential extenstions and new builds in South Manchester, DGS Development are the most trusted builders on the market</p>
-                        <p><p>
+                        <div class="row">
+                            <button>Contact Us</button>
+                            <button>Our Work</button>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -54,6 +58,10 @@
 
                 </div>
 
+                <p id="project_description" class="project-description">
+
+                </p>
+
                 <div id="gallery" class="gallery">
                     <a id="prev" class="prev" onclick="moveSlide(-1)">&#10094;</a>
                     <a class="next" onclick="moveSlide(1)">&#10095;</a>
@@ -73,10 +81,23 @@
 
             <section id="contact_us">
                 <h1>Contact Us</h1>
-                <p>This is the main landing page of your website.</p>
+                <p>If you like what you see and you can't wait to design the home of your dreams then use the form below to contact us now.</p>
 
-                <div class="placeholder">
-                    
+                <div class="form-container">
+                    <form id="contact_us_form">
+                        <div class="row">
+                            <label for="first_name">First name</label>
+                            <input id="first_name" type="text" required>
+                            <label for="last_name">Last name</label>
+                            <input id="last_name" type="text" required>
+                            <label for="email">email</label>
+                            <input id="email" type="email" required>
+                        </div>
+                        <div class="row">
+                            <textarea id="message" placeholder="Your message"></textarea>
+                        </div>
+                        <button>Send</button>
+                    </form>
                 </div>
             </section>
         </main>

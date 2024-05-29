@@ -75,26 +75,50 @@
             <section id="testimonials">
                 <h1>Testimonials</h1>
                 <p>This is the main landing page of your website.</p>
+                <div class="placeholder">
+                    
+                </div>
 
                 
             </section>
 
             <section id="contact_us">
                 <h1>Contact Us</h1>
-                <p>If you like what you see and you can't wait to design the home of your dreams then use the form below to contact us now.</p>
+                <p>A message about why they should contact us.</p>
 
                 <div class="form-container">
                     <form id="contact_us_form">
                         <div class="row">
-                            <label for="first_name">First name</label>
-                            <input id="first_name" type="text" required>
-                            <label for="last_name">Last name</label>
-                            <input id="last_name" type="text" required>
-                            <label for="email">email</label>
-                            <input id="email" type="email" required>
+                            <div class="col-25">
+                                <label for="full_name">Full name</label>
+                            </div>
+                            <div class="col-75">
+                                <input id="full_name" type="text" required placeholder="Your name">
+                            </div>
                         </div>
                         <div class="row">
-                            <textarea id="message" placeholder="Your message"></textarea>
+                            <div class="col-25">
+                                <label for="email">Email Address</label>
+                            </div>
+                            <div class="col-75">
+                                <input id="email" type="email" required placeholder="Email address">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="phonenumber">Phonenumber</label>
+                            </div>
+                            <div class="col-75">
+                                <input id="phonenumber" type="text" required placeholder="Phonenumber">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+
+                            </div>
+                            <div class="col-75">
+                                <textarea id="message" placeholder="Tell us when you are free or how you would like to be contacted"></textarea>
+                            </div>
                         </div>
                         <button>Send</button>
                     </form>

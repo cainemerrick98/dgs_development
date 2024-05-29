@@ -8,6 +8,11 @@ const Projects = {
         image_count:17,
         tab_name:'Project 2',
         description: 'Project description for project 2',
+    },
+    'hurstfold':{
+        image_count:10,
+        tab_name:'Project 3',
+        description:'Project description for project 3',
     }
 }
 let SlideIndex = 1;

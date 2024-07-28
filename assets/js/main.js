@@ -13,8 +13,14 @@ const Projects = {
         image_count:10,
         tab_name:'Project 3',
         description:'Project description for project 3',
+    },
+    'parrswood_ave':{
+        image_count:6,
+        tab_name:'Project 4',
+        description:'Project description for project 4',
     }
 }
+
 let SlideIndex = 1;
 document.addEventListener('DOMContentLoaded', configurePage())
 
@@ -30,6 +36,7 @@ function configurePage(){
     addTabs()
     buildSlideShow('dalston')
     showSlide(SlideIndex)
+    setUpScroller()
 
 }
 
@@ -234,4 +241,13 @@ function clearSlides(){
 
 function clearThumbnails(){
     Array.from(document.querySelectorAll('.column')).map(ele => ele.remove()) //TODO - why is the class name column
+}
+
+/**
+ * ensures the scroller is infinite by doubling content
+ */
+function setUpScroller(){
+    const scroll_content = document.querySelector('.scroll-content')
+    scroll_content.innerHTML += scroll_content.innerHTML
+
 }

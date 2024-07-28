@@ -30,6 +30,7 @@ nav{
     border-bottom: 1px solid black;
     background-color: white;
     z-index: 1000;
+    padding:10px;
 }
 
 .logo{
@@ -84,7 +85,7 @@ nav{
 .overlay button{
     font-size: 1.2em;
     padding:10px;
-    background-color: blue;
+    background-color: #0298E4;
     color: white;
     border-radius: 10px;
     border: none;
@@ -104,11 +105,23 @@ nav{
     }
 }
 
+li {
+    margin-bottom: 10px;
+}
+
+li:last-child {
+    margin-bottom: 0;
+}
+
 
 section{
     display: block;
     margin: 5%;
-    margin-bottom: 10%;
+}
+
+.split-section{
+    display: flex;
+    gap:20px;
 }
 
 .placeholder{
@@ -231,20 +244,91 @@ input[type=text], input[type=email], textarea{
     margin-top:6px;
 }
 
+.col-50{
+    float: left;
+    width:50%;
+    margin-top:6px;
+}
+
 .col-75{
     float: left;
     width: 75%;
     margin-top: 6px;
 }
 
+.col-100{
+    float: left;
+    width: 100%;
+    margin-top: 6px;
+}
+
 @media screen and (max-width:1300px) {
-    .col-25, .col-75{
+    .col-25, .col-75, .col-50{
         width: 100%;
         margin-top: 0;
     }
-    
+
+    .split-section{
+        flex-direction: column;
+    }
 }
 
+section.full-width-sec{
+    margin-left:0;
+    margin-right: 0;
+}
+
+.scroll-container {
+    width: 100%;
+    height:400px;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    background: #0298E4;
+}
+
+.scroll-content {
+    display: inline-block;
+    height: 100%;
+    white-space: nowrap;
+    animation: scroll 30s linear infinite;
+    padding: 40px;
+}
+
+.scroll-item {
+    display: inline-block;
+    padding: 20px;
+    margin: 0 50px;
+    background: #fff;
+    color: black;
+    border-radius: 4px;
+    width: 400px;
+    height: 100%;
+    white-space: normal;
+}
+
+.scroll-item h3{
+    font-size: 2em;
+    margin: 0;
+}
+
+.scroll-item p{
+    font-size: 1.5em;
+}
+
+.material-symbols-outlined{
+    color:rgb(244, 208, 1);
+}
+
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
 
 form textarea{
     width: 100%;
@@ -254,7 +338,7 @@ form textarea{
 
 form button{
     float: right;
-    background-color: blue;
+    background-color: #0298E4;
     color: white;
     padding: 10px;
     padding-left: 20px;
